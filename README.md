@@ -96,7 +96,7 @@ installation can be found in `/tmp/centos-gridftp-rw.log`.
 ## TODO: Locating data
 
 It would be nice if we could have a section here on finding data that we want
-to copy to the VM.
+to copy to the VM. For example, by using the Plant user community query interface.
 
 
 ## Transfering data to the virtual machine
