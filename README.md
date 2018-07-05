@@ -12,7 +12,7 @@ Data Transfer Service to move a set of files to the cloud instance.
   * [instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
 * access to resources from a cloud provider
   * in this demonstor, we have used the [denbi cloud](https://www.denbi.de/cloud), which is integrated with the Elixir AAI system
-* [terraform](https://www.terraform.io/) (infrastructure as code software by [HashiCorp](https://www.hashicorp.com/)
+* [terraform](https://www.terraform.io/) (infrastructure as code software by [HashiCorp](https://www.hashicorp.com/))
 * [fts3](https://fts.web.cern.ch/) command line tools
   * [documentation](https://fts3-docs.web.cern.ch/fts3-docs/)
   * for a workstation running [CentOS](https://centos.org/) with the [EPEL](https://fedoraproject.org/wiki/EPEL) repository enabled, simply run `yum install fts-client`
@@ -66,7 +66,7 @@ Next, we deploy a VM and install the gridftp daemon by using the terraform scrip
 terraform apply \
 -var 'external_gateway=52b76a82-5f02-4a3e-9836-57536ef1cb63' \
 -var 'pool="Public External IPv4 Network"' \
--var 'certificate="/DC=eu/DC=rcauth/DC=rcauth-clients/O=ELIXIR/CN=Mikael Borg g7p4cBSP40VO4gZe 2"'
+-var 'certificate="/DC=eu/DC=rcauth/DC=rcauth-clients/O=ELIXIR/CN=Firstname Lastname abc123"'
 ```
 Note that if the variables are not specified as arguments, terraform will ask the user for them.
 
@@ -143,9 +143,9 @@ In setting up this demonstrator, we have used cloud resources graciously
 provided by the [SNIC Science Cloud](https://cloud.snic.se/) and the [denbi
 cloud](https://www.denbi.de/cloud).
 
-![Excelerate logo](https://nbis.se/assets/img/logos/elixir.png)
-![Excelerate logo](https://nbis.se/assets/img/logos/excelerate-logo.png)
-![deNBI logo](https://www.denbi.de/templates/de.nbi2/img/deNBI_logo.jpg)
-![NBIS logo](https://nbis.se/assets/img/logos/nbislogo-green-txt.svg)
-![Elixir logo](https://nbis.se/assets/img/logos/elixir-logo.png)
-![terraform logo](https://www.terraform.io/assets/images/logo-hashicorp-3f10732f.svg)
+<img align="left" height="100" alt="Elixir logo" src="https://nbis.se/assets/img/logos/elixir.png">
+<img align="left" height="100" alt="Excelerate logo" src="https://nbis.se/assets/img/logos/excelerate-logo.png">
+<img align="left" height="100" alt="deNBI logo" src="https://www.denbi.de/templates/de.nbi2/img/deNBI_logo.jpg">
+<img align="left" height="100" alt="NBIS logo" src="https://nbis.se/assets/img/logos/nbislogo-green-txt.svg">
+<img align="left" height="100" alt="terraform logo" src="https://www.terraform.io/assets/images/logo-hashicorp-3f10732f.svg">
+
