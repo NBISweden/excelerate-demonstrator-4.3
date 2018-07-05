@@ -1,0 +1,8 @@
+*.swp
+notes.txt
+*openrc.sh
+terraform.tfstate
+.terraform
+outputs.tf
+transfers.txt
+
