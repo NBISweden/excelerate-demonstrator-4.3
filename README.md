@@ -1,5 +1,5 @@
 <img align="left" height="100" alt="Elixir logo" src="https://nbis.se/assets/img/logos/elixir.png">
-<img align="left" height="100" alt="Excelerate logo" src="https://nbis.se/assets/img/logos/excelerate-logo.png">
+<img align="left" height="100" alt="Excelerate logo" src="https://nbis.se/assets/img/logos/excelerate-logo.png"><br>
 
 # Elixir-Excelerate Demonstrator 4.3
 
@@ -22,7 +22,8 @@ Data Transfer Service to move a set of files to the cloud instance.
 
 ## Deploying a storage endpoint
 
-We use terraform to deploy a VM running a gridftp daemon.
+We use terraform to deploy a VM running a
+[gridftp](http://gridcf.org/gct-docs/gridftp/index.html) daemon.
 
 First we download a proxy certificate that will be used to authentate with the
 Elixir Transfer service. For this the user must have access to the [VO
@@ -42,8 +43,11 @@ certificate in a text file, e.g. by pasting it into `cert.txt`.
 
 From the VO Portal, we also take note of the `identity` (typically a string of
 the form `/DC=eu/DC=rcauth/DC=rcauth-clients/O=ELIXIR/CN=Firstname Lastname
-Randomstring` (the identity can of course also be extracted from the proxy
-certificate itself, using e.g. the `openssl` tool).
+Randomstring`. The identity can of course also be extracted from the proxy
+certificate itself, using e.g. the `openssl` tool:
+```sh
+openssl x509 -subject -noout -in cert.txt
+```
 
 ### Deploying endpoint
 
@@ -69,12 +73,13 @@ Next, we deploy a VM and install the gridftp daemon by using the terraform scrip
 terraform apply \
 -var 'external_gateway=52b76a82-5f02-4a3e-9836-57536ef1cb63' \
 -var 'pool="Public External IPv4 Network"' \
--var 'certificate="/DC=eu/DC=rcauth/DC=rcauth-clients/O=ELIXIR/CN=Firstname Lastname abc123"'
+-var 'certificate="/DC=eu/DC=rcauth/DC=rcauth-clients/O=ELIXIR/CN=Firstname Lastname abc123"' \
+-var 'email=firstname.lastname@example.com'
 ```
 Note that if the variables are not specified as arguments, terraform will ask the user for them.
 
-Terraform will then spin up a VM based on Centos 7 and apply some network
-rules. The details of this can be found in `main.tf`.
+Terraform will then spin up a VM based on Centos 7, attach a public IP number
+and apply some network rules. The details of this can be found in `main.tf`.
 
 Finally the gridftp server is installed, equipped with a
 [letsencrypt](https://letsencrypt.org/) server certificate, and set to map the
@@ -151,8 +156,8 @@ instance, and to copy a data set to it using the Elixir Transfer Service.
 ## Acknowledgements
 
 In setting up this demonstrator, we have used cloud resources graciously
-provided by the [SNIC Science Cloud](https://cloud.snic.se/) and the [denbi
-cloud](https://www.denbi.de/cloud).
+provided by the [SNIC Science Cloud](https://cloud.snic.se/) and the [deNBI
+Cloud](https://www.denbi.de/cloud).
 
 <img align="left" height="100" alt="deNBI logo" src="https://www.denbi.de/templates/de.nbi2/img/deNBI_logo.jpg">
 <img align="left" height="100" alt="NBIS logo" src="https://nbis.se/assets/img/logos/nbislogo-green-txt.svg">
