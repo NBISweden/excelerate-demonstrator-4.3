@@ -1,15 +1,23 @@
+# Elixir-Excelerate Demonstrator 4.3
+
+
 <img align="left" height="100" alt="Elixir logo" src="https://nbis.se/assets/img/logos/elixir.png">
+
+
 <img align="left" height="100" alt="Excelerate logo" src="https://nbis.se/assets/img/logos/excelerate-logo.png">
 
-
-# Elixir-Excelerate Demonstrator 4.3
 
 This repository contains instructions and scripts for setting up a cloud
 resource using Elixir id, deploying a storage endpoint VM, and using the Elixir
 Data Transfer Service to move a set of files to the cloud instance.
 
+By cloning this repository and following the instructions, it should be
+possible to reproduce the demonstration.
+
 ## Prerequisites
 
+* [git](https://git-scm.com/) - for cloning this repository
+  * `git clone https://github.com/NBISweden/excelerate-demonstrator-4.3.git`
 * an Elixir id
   * [sign up at the Elixir web site](https://www.elixir-europe.org/intranet)
 * an ssh key pair
@@ -68,7 +76,9 @@ source openstack.rc
 openstack network list --external
 ```
 
-Next, we deploy a VM and install the gridftp daemon by using the terraform scripts:
+Next, we deploy a VM and install the gridftp daemon by using the terraform
+scripts. The VM specifications and network rules can be found in `main.tf`, settings that
+might be different for different providers are in the file `variables.tf`.
 
 ```sh
 terraform apply \
@@ -95,8 +105,8 @@ installation can be found in `/tmp/centos-gridftp-rw.log`.
 
 ## TODO: Locating data
 
-It would be nice if we could have a section here on finding data that we want
-to copy to the VM. For example, by using the Plant user community query interface.
+_It would be nice if we could have a section here on finding data that we want
+to copy to the VM. For example, by using the Plant user community query interface._
 
 
 ## Transfering data to the virtual machine
