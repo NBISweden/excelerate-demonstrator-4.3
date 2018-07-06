@@ -77,9 +77,15 @@ openstack network list --external
 ```
 
 Next, we deploy a VM and install the gridftp daemon by using the terraform
-scripts. The VM specifications and network rules can be found in `main.tf`, settings that
-might be different for different providers are in the file `variables.tf`.
+scripts. We start by initializing terraform, which will download the terraform
+Openstack provider, in case it's missing. 
+```sh
+terraform init
+```
 
+The VM specifications and network rules can be found in `main.tf`, settings that
+might be different for different providers are in the file `variables.tf`. We
+tell terraform to apply this at our cloud provider:
 ```sh
 terraform apply \
 -var 'external_gateway=52b76a82-5f02-4a3e-9836-57536ef1cb63' \
