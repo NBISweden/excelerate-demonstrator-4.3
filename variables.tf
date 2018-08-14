@@ -1,9 +1,9 @@
 variable "image" {
-  default = "CentOS 7 - latest"
+  default = "Centos 7"
 }
 
 variable "flavor" {
-  default = "ssc.medium"
+  default = "de.NBI.small+ephemeral"
 }
 
 variable "ssh_key_file" {
