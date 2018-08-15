@@ -22,13 +22,13 @@ curl -O http://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trus
 curl -O http://fts-repo.web.cern.ch/fts-repo/fts3-continuous-el7.repo
 
 # install trust anchors
-yum install -y ca-policy-egi-core ca_RCauth-Pilot-ICA-G1 ca_letsencrypt
+yum install -y -q ca-policy-egi-core ca_RCauth-Pilot-ICA-G1 ca_letsencrypt
 
 # install certbot
-yum install -y certbot
+yum install -y -q certbot
 
 # install gridftp server
-yum install -y openssl globus-gridftp-server globus-gridftp-server-progs
+yum install -y -q openssl globus-gridftp-server globus-gridftp-server-progs
 
 # server certificate
 

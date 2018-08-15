@@ -3,7 +3,7 @@ variable "image" {
 }
 
 variable "flavor" {
-  default = "de.NBI.small+ephemeral"
+  default = "de.NBI.small"
 }
 
 variable "ssh_key_file" {
