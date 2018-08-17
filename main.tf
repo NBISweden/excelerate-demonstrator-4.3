@@ -100,6 +100,13 @@ resource "openstack_compute_floatingip_associate_v2" "terraform" {
     }
 
   provisioner "remote-exec" {
+    # set up command line options
+    domainopt = "${var.fqdn == "" ? "" : "-d ${var.fqdn}"}"
+    # the following construction is a bit complicated because terraform
+    # evaluates both branches of conditionals
+    # c.f. https://github.com/hashicorp/hil/issues/50
+    dnsupdateopt = "${var.dnsupdatescript == "" ? "" : "-u ${file("${var.dnsupdatescript == "" ? "/dev/null" : var.dnsupdatescript }")}" }"
+
     connection {
       host = "${openstack_compute_floatingip_v2.terraform.address}"
       user     = "${var.ssh_user_name}"
@@ -108,7 +115,7 @@ resource "openstack_compute_floatingip_associate_v2" "terraform" {
 
     inline = [
       "chmod +x /tmp/centos-gridftp-rw.sh",
-      "/tmp/centos-gridftp-rw.sh \"${var.certificate}\" \"${var.email}\"> /tmp/centos-gridftp-rw.log"
+      "/tmp/centos-gridftp-rw.sh -c \"${var.certificate}\" -e \"${var.email}\" ${domainopt} ${dnsupdateopt} > /tmp/centos-gridftp-rw.log"
     ]
   }
 
