@@ -23,3 +23,10 @@ variable "pool" {
 variable "certificate" {}
 
 variable "email" {}
+
+variable "dnsupdatescript" {
+  default = ""
+}
+variable "fqdn" {
+  default = ""
+}
