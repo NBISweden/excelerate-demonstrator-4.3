@@ -3,23 +3,66 @@
 # Script to deploy a gridftp endpoint on a CentOS 7 machine
 # with letsencrypt server certificate and a user mapping.
 #
-# Usage: centos-gridftp-rw.sh CERTIFICATEDN EMAIL
+# Usage: centos-gridftp-rw.sh  -c CERTIFICATEDN -e EMAIL [-d DOMAIN -u DNSUPDATE] 
 # 
 
 # run as root
 if ((EUID != 0)); then
-    exec sudo "$0" "$1" "$2"
+    exec sudo "$0" "$*"
     exit
 fi
 
-# set your email address (needed by letsencrypt)
-EMAIL=$2
+# echo command for log file
+echo "$0 $*"
+
+# parse options
+TEMP=`getopt -o d:c:e:u: \
+     -n 'centos-gridftp-rw.sh' -- "$@"`
+
+if [ $? != 0 ] ; then echo "Parse error. Terminating..." >&2 ; exit 1 ; fi
+
+# Note the quotes around `$TEMP': they are essential!
+eval set -- "$TEMP"
+
+while true ; do
+        case "$1" in
+                -d) DOMAIN=$2 ; shift 2 ;;
+                -c) CERTDN=$2 ; shift 2 ;;
+                -e) EMAIL=$2 ; shift 2 ;;
+                -u) DNSUPDATE=$2 ; shift 2 ;;
+                --) shift ; break ;;
+                *) echo "Internal error!" ; exit 1 ;;
+        esac
+done
+
+if [ -z ${EMAIL+x} ]
+then
+  echo "Error: EMAIL not set"
+  exit 1
+fi
+if [ -z ${CERTDN+x} ]
+then
+  echo "Error: Certificate not set"
+  exit 1
+fi
+if [ -n "${DNSUPDATE}" ]
+then
+  echo "Running command for DNS update:"
+  echo "$DNSUPDATE"
+  eval $DNSUPDATE
+fi
+if [ -z ${DOMAIN+x} ]
+then
+  echo "Looking up domain name..."
+  DOMAIN=`curl -s https://myhostname.net/ | grep Hostname | sed -E 's/Hostname:\s+([^[:space:]]+)\s*.*/\1/'`
+  echo "Domain name: $DOMAIN"
+fi
 
 # enable yum repositories
-yum install -y epel-release
+yum install -y -q epel-release
 cd /etc/yum.repos.d/
-curl -O http://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trustanchors.repo
-curl -O http://fts-repo.web.cern.ch/fts-repo/fts3-continuous-el7.repo
+curl -s -O http://repository.egi.eu/sw/production/cas/1/current/repo-files/EGI-trustanchors.repo
+curl -s -O http://fts-repo.web.cern.ch/fts-repo/fts3-continuous-el7.repo
 
 # install trust anchors
 yum install -y -q ca-policy-egi-core ca_RCauth-Pilot-ICA-G1 ca_letsencrypt
@@ -29,11 +72,6 @@ yum install -y -q certbot
 
 # install gridftp server
 yum install -y -q openssl globus-gridftp-server globus-gridftp-server-progs
-
-# server certificate
-
-# first find domain name of server
-DOMAIN=`curl -s https://myhostname.net/ | grep Hostname | sed -E 's/Hostname:\s+([^[:space:]]+)\s*.*/\1/'`
 
 # obtain letsencrypt certificate
 /usr/bin/certbot certonly --non-interactive --renew-by-default --standalone \
