@@ -91,7 +91,7 @@ locals {
     # the following construction is a bit complicated because terraform
     # evaluates both branches of conditionals
     # c.f. https://github.com/hashicorp/hil/issues/50
-      dnsupdateopt = "${var.dnsupdatescript == "" ? "" : "-u ${file("${var.dnsupdatescript == "" ? "/dev/null" : var.dnsupdatescript }")}" }"
+      dnsupdateopt = "${var.dnsupdatescript == "" ? "" : "-u \" ${file("${var.dnsupdatescript == "" ? "/dev/null" : var.dnsupdatescript }") } \" " }"
 }
 
 resource "openstack_compute_floatingip_associate_v2" "terraform" {
@@ -118,7 +118,7 @@ resource "openstack_compute_floatingip_associate_v2" "terraform" {
 
     inline = [
       "chmod +x /tmp/centos-gridftp-rw.sh",
-      "/tmp/centos-gridftp-rw.sh -c \"${var.certificate}\" -e \"${var.email}\" ${local.domainopt} ${local.dnsupdateopt} > /tmp/centos-gridftp-rw.log"
+      "sudo /tmp/centos-gridftp-rw.sh -c \"${var.certificate}\" -e \"${var.email}\" ${local.domainopt} ${local.dnsupdateopt} > /tmp/centos-gridftp-rw.log"
     ]
   }
 
