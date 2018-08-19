@@ -92,7 +92,7 @@ fi
 useradd -r -s /sbin/nologin gridftp
 
 # map certificate subject to gridftp user
-echo "\"$1\" gridftp" >> /etc/grid-security/grid-mapfile
+echo "\"$CERTDN\" gridftp" >> /etc/grid-security/grid-mapfile
 
 # create data directory
 mkdir -p /srv/data
