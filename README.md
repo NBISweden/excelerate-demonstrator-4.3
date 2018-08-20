@@ -97,7 +97,15 @@ terraform apply \
 ```
 Note that if the variables are not specified as arguments, terraform will ask the user for them.
 
-Terraform will then spin up a VM based on Centos 7, attach a public IP number
+
+For cases where the cloud provider do not have domain names registered for the
+public IP numbers, it is possible to explicitly set the domain name via the
+variable `fqdn`. Then it is necessary to create a DNS record pointing to the IP
+number.  This can be carried out by the installation script by specifying an
+additional DNS update script via the variable `dnsupdatescript`.
+
+
+Upon `apply`, terraform will spin up a VM based on Centos 7, attach a public IP number
 and apply some network rules. The details of this can be found in `main.tf`.
 
 Finally the gridftp server is installed, equipped with a
