@@ -14,6 +14,8 @@ Data Transfer Service to move a set of files to the cloud instance.
 By cloning this repository and following the instructions, it should be
 possible to reproduce the demonstration.
 
+A terminal session recording is available at https://asciinema.org/a/5XlGftbaq0KXGgQeGdEpAq4nd .
+
 ## Prerequisites
 
 * [git](https://git-scm.com/) - for cloning this repository
