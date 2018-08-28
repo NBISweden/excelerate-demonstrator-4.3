@@ -22,9 +22,11 @@ and understand the life of plants at the molecular level.
 community](https://www.elixir-europe.org/use-cases/plant-sciences) to track and
 bring these data together, which enriches data analysis capabilities of the
 scientific community – local data can be interpreted in the global context.
-This EXCELERATE demonstrator show the fundamental technical integration needed
-to achieve data transfers from geographically distributed sites onto the
-scalable Compute platform built by ELIXIR.
+This
+[EXCELERATE](https://www.elixir-europe.org/about-us/how-funded/eu-projects/excelerate)
+demonstrator show the fundamental technical integration needed to achieve data
+transfers from geographically distributed sites onto the scalable Compute
+platform built by ELIXIR.
 
 This repository contains instructions and scripts for setting up a cloud
 resource using Elixir id, deploying a storage endpoint VM, and using the Elixir
