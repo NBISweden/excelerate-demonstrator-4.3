@@ -4,7 +4,7 @@
 <img align="left" height="100" alt="Elixir logo" src="https://nbis.se/assets/img/logos/elixir.png">
 
 
-<img align="left" height="100" alt="Excelerate logo" src="https://nbis.se/assets/img/logos/excelerate-logo.png">  
+<img align="left" height="100" alt="Excelerate logo" src="https://nbis.se/assets/img/logos/excelerate-logo.png"><br />  
 
 
 
