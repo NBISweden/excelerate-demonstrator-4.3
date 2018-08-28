@@ -6,6 +6,23 @@
 
 <img align="left" height="100" alt="Excelerate logo" src="https://nbis.se/assets/img/logos/excelerate-logo.png">
 
+## Introduction 
+
+Massive sequencing and genotyping of crop and forest plants and their pathogens
+and pests generates large quantities of genomic variation data.
+[ELIXIR](https://www.elixir-europe.org/) is designing an infrastructure to
+allow genotype-phenotype analysis for crop plants based on the widest available
+public datasets. Data is scattered across the laboratories seeking to describe
+and understand the life of plants at the molecular level. 
+
+[ELIXIR Compute](https://www.elixir-europe.org/platforms/compute) supports the
+[plant science
+community](https://www.elixir-europe.org/use-cases/plant-sciences) to track and
+bring these data together, which enriches data analysis capabilities of the
+scientific community – local data can be interpreted in the global context.
+This EXCELERATE demonstrator show the fundamental technical integration needed
+to achieve data transfers from geographically distributed sites onto the
+scalable Compute platform built by ELIXIR.
 
 This repository contains instructions and scripts for setting up a cloud
 resource using Elixir id, deploying a storage endpoint VM, and using the Elixir
@@ -143,7 +160,7 @@ We append the destination URL (where we use `gsiftp` as protocol) for each
 source URL and save it in a new file:
 ```sh
 PREFIX='gsiftp:\/\/vm-123.denbi.de\/srv\/data'
-sed "s/\(\".*:\/\)\(.*$\)/\1\2 \"$PREFIX\2/" urls.txt > transfers.txt
+sed "s/\(.*:\/\)\(.*$\)/\1\2 $PREFIX\2/" urls.txt > transfers.txt
 ```
 where `vm-123.denbi.de` is the host name of our VM.
 
