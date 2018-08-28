@@ -207,7 +207,8 @@ In setting up this demonstrator, we have used cloud resources graciously
 provided by the [SNIC Science Cloud](https://cloud.snic.se/) and the [deNBI
 Cloud](https://www.denbi.de/cloud).
 
-<img align="left" height="100" alt="deNBI logo" src="https://www.denbi.de/templates/de.nbi2/img/deNBI_logo.jpg">
-<img align="left" height="100" alt="NBIS logo" src="https://nbis.se/assets/img/logos/nbislogo-green-txt.svg">
-<img align="left" height="100" alt="terraform logo" src="https://www.terraform.io/assets/images/logo-hashicorp-3f10732f.svg">
+<a href="http://www.denbi.de/"><img align="left" height="100" alt="deNBI logo" src="https://www.denbi.de/templates/de.nbi2/img/deNBI_logo.jpg"></a>
+<a href="https://nbis.se"><img align="left" height="100" alt="NBIS logo" src="https://nbis.se/assets/img/logos/nbislogo-green-txt.svg"></a>
+<a href="https://www.terraform.io/"><img align="left" height="100" alt="terraform logo" src="https://www.terraform.io/assets/images/logo-hashicorp-3f10732f.svg"></a>
+
 
